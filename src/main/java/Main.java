@@ -19,7 +19,7 @@ public class Main {
             while (!flag) {
                 System.out.println("Скорость машины №" + i + ": ");
                 speed = scanner.nextInt();
-                if (speed < 0 || speed > 250) {
+                if (speed <= 0 || speed > 250) {
                     System.out.println("Скорость машины должна быть в интервале от 0 до 250.") ;
                     flag = false;
                 } else
