@@ -8,18 +8,18 @@ public class Main {
         // ваш код начнется здесь
         // вы не должны ограничиваться только классом Main и можете создавать свои классы по необходимости
         Scanner scanner = new Scanner(System.in);
-        List<Car> cars = new ArrayList<>();
+        Race race = new Race();
 
         System.out.println("Введите 3 машины:");
         for (int i = 1; i < 4; i++) {
             System.out.println("Имя машины №" + i + ": ");
             String name = scanner.next();
-            int speed = -10;
             while (true) {
                 System.out.println("Скорость машины №" + i + ": ");
                 if (scanner.hasNextInt()) {
-                    speed = scanner.nextInt();
+                    int speed = scanner.nextInt();
                     if (speed > 0 && speed <= 250) {
+                        race.newLeader(new Car(name, speed));
                         break;
                     } else {
                         System.out.println("Скорость машины должна быть в интервале от 0 до 250.") ;
@@ -29,15 +29,8 @@ public class Main {
                     scanner.next();
                 }
             }
-            cars.add(new Car(name, speed));
         }
-
         scanner.close();
-
-        Race race = new Race();
-        for (Car car : cars) {
-            race.newLeader(car);
-        }
         System.out.println("Самая быстрая машина: " + race.leader);
     }
 }
