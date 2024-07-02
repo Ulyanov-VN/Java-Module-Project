@@ -14,18 +14,21 @@ public class Main {
         for (int i = 1; i < 4; i++) {
             System.out.println("Имя машины №" + i + ": ");
             String name = scanner.next();
-            boolean flag = false;
             int speed = -10;
-            while (!flag) {
+            while (true) {
                 System.out.println("Скорость машины №" + i + ": ");
-                speed = scanner.nextInt();
-                if (speed <= 0 || speed > 250) {
+                if (scanner.hasNextInt()) {
+                    speed = scanner.nextInt();
+                    if (speed > 0 && speed <= 250) {
+                        break;
+                    } else {
+                        System.out.println("Скорость машины должна быть в интервале от 0 до 250.") ;
+                    }
+                } else {
                     System.out.println("Скорость машины должна быть в интервале от 0 до 250.") ;
-                    flag = false;
-                } else
-                    flag = true;
+                    scanner.next();
+                }
             }
-
             cars.add(new Car(name, speed));
         }
 
